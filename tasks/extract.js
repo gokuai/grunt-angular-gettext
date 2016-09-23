@@ -2,7 +2,8 @@ var Extractor = require('angular-gettext-tools').Extractor;
 
 module.exports = function (grunt) {
     grunt.registerMultiTask('nggettext_extract', 'Extract strings from views', function () {
-        var optionsArr = Array.from(this.options());
+        var optionsObj = this.options();
+        var optionsArr = optionsObj['0'] ? Object.keys(optionsObj).map(i => optionsObj[i]) : [optionsObj];
         var self = this;
         optionsArr.forEach(function(options){
             if (options.extensions) {
