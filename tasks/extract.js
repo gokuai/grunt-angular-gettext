@@ -3,6 +3,7 @@ var Extractor = require('angular-gettext-tools').Extractor;
 module.exports = function (grunt) {
     grunt.registerMultiTask('nggettext_extract', 'Extract strings from views', function () {
         var optionsArr = Array.from(this.options());
+        var self = this;
         optionsArr.forEach(function(options){
             if (options.extensions) {
                 for (var extension in options.extensions) {
@@ -13,7 +14,7 @@ module.exports = function (grunt) {
                 }
             }
 
-            this.files.forEach(function (file) {
+            self.files.forEach(function (file) {
                 var extractor = new Extractor(options);
                 var failed = false;
 
